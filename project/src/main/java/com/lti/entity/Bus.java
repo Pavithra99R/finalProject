@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,52 +18,65 @@ public class Bus {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="my_bus_seq")
 	@SequenceGenerator(sequenceName = "bus_seq",allocationSize=1,name="my_bus_seq")
 	@Column(name = "BUS_ID")
-	private int BusId;
+	private int busId;
 	
-	@Column(name = "ROUTE_ID")
-	private int RouteId;
+	@ManyToOne
+	@JoinColumn(name = "ROUTE_ID")
+	private Route route;
 	
 	@Column(name = "BUS_NAME")
-	private String BusName;
+	private String busName;
 	
 	@Column(name = "BUS_TYPE")
-	private String BusType;
+	private String busType;
 	
 	@Column(name = "NO_OF_Seats")
-	private int NoOfSeats;
-	
-	
+	private int noOfseats;
+
 	public int getBusId() {
-		return BusId;
+		return busId;
 	}
-	public int getRouteId() {
-		return RouteId;
+
+	public Route getRoute() {
+		return route;
 	}
+
 	public String getBusName() {
-		return BusName;
+		return busName;
 	}
+
 	public String getBusType() {
-		return BusType;
+		return busType;
 	}
-	public int getNoOfSeats() {
-		return NoOfSeats;
+
+	public int getNoOfseats() {
+		return noOfseats;
 	}
+
 	public void setBusId(int busId) {
-		BusId = busId;
+		this.busId = busId;
 	}
-	public void setRouteId(int routeId) {
-		RouteId = routeId;
+
+	public void setRoute(Route route) {
+		this.route = route;
 	}
+
 	public void setBusName(String busName) {
-		BusName = busName;
+		this.busName = busName;
 	}
+
 	public void setBusType(String busType) {
-		BusType = busType;
+		this.busType = busType;
 	}
-	public void setNoOfSeats(int noOfSeats) {
-		NoOfSeats = noOfSeats;
+
+	public void setNoOfseats(int noOfseats) {
+		this.noOfseats = noOfseats;
 	}
 	
+	
+	
+	
+
 	
 	
 	

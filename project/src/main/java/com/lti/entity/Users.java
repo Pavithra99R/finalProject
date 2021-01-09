@@ -1,14 +1,18 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+
 
 
 
@@ -23,93 +27,123 @@ public class Users {
 	private int UserId;
 	
 	@Column(name = "FIRST_NAME")
-	private String FirstName;
+	private String firstName;
 	
 	@Column(name = "LAST_NAME")
-	private String LastName;
+	private String lastName;
 	
 	@Column(name = "EMAIL")
-	private String Email;
+	private String email;
 	
 	@Column(name = "PASSWORD")
-	private String Password;
+	private String password;
 	
 	@Column(name = "CONTACT")
-	private int Contact;
+	private int contact;
 	
 	@Column(name = "GENDER")
-	private String Gender;
+	private String gender;
 	
 	@Column(name = "DOB")
-	private LocalDate DOB;
+	private LocalDate dob;
 	
 	@Column(name = "AUTHORIZED")
-	private boolean Authorized;
+	private boolean authorized;
 	
 	@Column(name = "WALLET")
-	private float Wallet;
+	private float wallet;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Booking> bookings;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Payment> payments;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
+
 	public int getUserId() {
 		return UserId;
 	}
+
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
+
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
+
 	public String getEmail() {
-		return Email;
+		return email;
 	}
+
 	public String getPassword() {
-		return Password;
+		return password;
 	}
+
 	public int getContact() {
-		return Contact;
+		return contact;
 	}
+
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
-	public LocalDate getDOB() {
-		return DOB;
+
+	public LocalDate getDob() {
+		return dob;
 	}
+
 	public boolean isAuthorized() {
-		return Authorized;
+		return authorized;
 	}
+
 	public float getWallet() {
-		return Wallet;
+		return wallet;
 	}
+
 	public void setUserId(int userId) {
 		UserId = userId;
 	}
+
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
+
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
+
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
+
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
+
 	public void setContact(int contact) {
-		Contact = contact;
+		this.contact = contact;
 	}
+
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
-	public void setDOB(LocalDate dOB) {
-		DOB = dOB;
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
+
 	public void setAuthorized(boolean authorized) {
-		Authorized = authorized;
+		this.authorized = authorized;
 	}
+
 	public void setWallet(float wallet) {
-		Wallet = wallet;
+		this.wallet = wallet;
 	}
+	
+	
+
 	
 	
 
