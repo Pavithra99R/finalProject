@@ -33,7 +33,7 @@ public class Booking {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Users user;
 
 	public int getTicketId() {
 		return ticketId;
@@ -91,11 +91,11 @@ public class Booking {
 		this.route = route;
 	}
 
-	public Passenger getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(Passenger user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
