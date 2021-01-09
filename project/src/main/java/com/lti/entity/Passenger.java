@@ -1,8 +1,10 @@
 package com.lti.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
@@ -12,13 +14,22 @@ import javax.persistence.Table;
 @Table(name = "passenger")
 public class Passenger {
 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_pass_seq")
-	@SequenceGenerator(sequenceName = "passenger_seq", allocationSize = 1, name = "my_pass_seq")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_passenger_seq")
+	@SequenceGenerator(sequenceName = "passenger_seq", allocationSize = 1, name = "my_passenger_seq")
+	@Column(name="passenger_id")
 	private int passengerId;
 	
+	@Column(name = "passenger_name")
 	private String passengerName;
+	
+	@Column(name = "passenger_age")
 	private int passengerAge;
+	
+	@Column(name="passenger_age")
 	private String passengerGender;
+	
+	@Column(name= "seat_no")
 	private int seatNo;
 
 	@ManyToOne

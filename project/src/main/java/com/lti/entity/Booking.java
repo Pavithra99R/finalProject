@@ -16,8 +16,9 @@ import javax.persistence.Table;
 @Table(name = "booking")
 public class Booking {
 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_book_seq")
-	@SequenceGenerator(sequenceName = "booking_seq", allocationSize = 1, name = "my_book_seq")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_booking_seq")
+	@SequenceGenerator(sequenceName = "booking_seq", allocationSize = 1, name = "my_booking_seq")
 	@Column(name = "ticket_id")
 	private int ticketId;
 
