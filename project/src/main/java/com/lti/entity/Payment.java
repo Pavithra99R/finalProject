@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -37,6 +39,10 @@ public class Payment {
 	
 	@Column(name="AMOUNT_PAID")
 	private float amountPaid;
+	
+	@OneToOne
+	@JoinColumn(name="TICKET_ID")
+	private Booking booking;
 	
 	public int getTransactionId() {
 		return transactionId;
