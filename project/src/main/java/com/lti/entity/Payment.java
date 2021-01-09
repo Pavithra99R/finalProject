@@ -83,7 +83,3 @@ public class Payment {
 	
 
 }
-//@Id
-//@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="my_payment_seq")
-//@SequenceGenerator(sequenceName="payment_seq",allocationSize=1,name="my_payment_seq")
-//@Column(name="TRANSACTION_ID")
