@@ -2,35 +2,38 @@ package com.lti.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="REVIEW")
+@Table(name = "TBL_REVIEW")
 public class Review {
-	
-	@Column(name="USER_ID")
-	private int userId;
-	
-	@Column(name="BUS_ID")
-	private int busId;
-	
-	@Column(name="RATING")
+
+	@Id
+	@GeneratedValue
+	@Column(name = "review_id")
+	private int reviewId;
+
+	@Column(name = "RATING")
 	private int rating;
 
-	public int getUserId() {
-		return userId;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private Users user;
+
+	@ManyToOne
+	@JoinColumn(name = "bus_id")
+	private Bus bus;
+
+	public int getReviewId() {
+		return reviewId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getBusId() {
-		return busId;
-	}
-
-	public void setBusId(int busId) {
-		this.busId = busId;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
 
 	public int getRating() {
@@ -40,4 +43,21 @@ public class Review {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Bus getBus() {
+		return bus;
+	}
+
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
+
 }

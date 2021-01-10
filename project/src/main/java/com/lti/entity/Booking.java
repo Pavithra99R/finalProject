@@ -1,8 +1,10 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +18,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "booking")
+@Table(name = "tbl_booking")
 public class Booking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_booking_seq")
 	@SequenceGenerator(sequenceName = "booking_seq", allocationSize = 1, name = "my_booking_seq")
-
 	@Column(name = "ticket_id")
 	private int ticketId;
 
@@ -31,23 +32,20 @@ public class Booking {
 	private double amount;
 
 	@Column(name = "paid_date")
-	private LocalDate paidDate;
+	private LocalDateTime paidDate;
 	private String status;
 
+	@OneToMany(mappedBy = "booking", cascade=CascadeType.MERGE)
+	private List<Passenger> passengers;
+	
 	@ManyToOne
-	@JoinColumn(name = "route_id")
+	@JoinColumn(name="route_id")
 	private Route route;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name="user_id")
 	private Users user;
-
-	@OneToOne
-	private Payment payment;
-
-	@OneToMany(mappedBy = "booking")
-	private List<Passenger> passengers;
-
+	
 	public int getTicketId() {
 		return ticketId;
 	}
@@ -80,11 +78,11 @@ public class Booking {
 		this.amount = amount;
 	}
 
-	public LocalDate getPaidDate() {
+	public LocalDateTime getPaidDate() {
 		return paidDate;
 	}
 
-	public void setPaidDate(LocalDate paidDate) {
+	public void setPaidDate(LocalDateTime paidDate) {
 		this.paidDate = paidDate;
 	}
 
@@ -94,6 +92,14 @@ public class Booking {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public List<Passenger> getPassengers() {
+		return passengers;
+	}
+
+	public void setPassengers(List<Passenger> passengers) {
+		this.passengers = passengers;
 	}
 
 	public Route getRoute() {
@@ -112,20 +118,5 @@ public class Booking {
 		this.user = user;
 	}
 
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
-
-	public List<Passenger> getPassengers() {
-		return passengers;
-	}
-
-	public void setPassengers(List<Passenger> passengers) {
-		this.passengers = passengers;
-	}
-
+	
 }

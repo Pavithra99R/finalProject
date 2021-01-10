@@ -1,73 +1,59 @@
 package com.lti.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "passenger")
+@Table(name = "tbl_passenger")
 public class Passenger {
 
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_passenger_seq")
-	@SequenceGenerator(sequenceName = "passenger_seq", allocationSize = 1, name = "my_passenger_seq")
-	@Column(name="passenger_id")
+	@GeneratedValue
+	private int pId;
 
-	private int passengerId;
-	
-	@Column(name = "passenger_name")
-	private String passengerName;
-	
-	@Column(name = "passenger_age")
-	private int passengerAge;
-	
-	@Column(name="passenger_age")
-	private String passengerGender;
-	
-	@Column(name= "seat_no")
+	private String name;
+	private int age;
+	private String Gender;
 	private int seatNo;
 
 	@ManyToOne
 	@JoinColumn(name = "ticket_id")
 	private Booking booking;
 
-	public int getPassengerId() {
-		return passengerId;
+	public int getpId() {
+		return pId;
 	}
 
-	public void setPassengerId(int passengerId) {
-		this.passengerId = passengerId;
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
 
-	public String getPassengerName() {
-		return passengerName;
+	public String getName() {
+		return name;
 	}
 
-	public void setPassengerName(String passengerName) {
-		this.passengerName = passengerName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getPassengerAge() {
-		return passengerAge;
+	public int getAge() {
+		return age;
 	}
 
-	public void setPassengerAge(int passengerAge) {
-		this.passengerAge = passengerAge;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
-	public String getPassengerGender() {
-		return passengerGender;
+	public String getGender() {
+		return Gender;
 	}
 
-	public void setPassengerGender(String passengerGender) {
-		this.passengerGender = passengerGender;
+	public void setGender(String gender) {
+		Gender = gender;
 	}
 
 	public int getSeatNo() {

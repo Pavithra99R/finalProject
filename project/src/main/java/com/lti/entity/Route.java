@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "route")
+@Table(name = "tbl_route")
 public class Route {
 
 	@Id
@@ -44,14 +44,14 @@ public class Route {
 	@Column(name = "seat_aval")
 	private int seatAvailable;
 
-	@OneToMany(mappedBy = "route",cascade = CascadeType.MERGE)
-	private List<Stop> stops;
-
-	@OneToMany(mappedBy = "route",cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE)
 	private List<Bus> buses;
 
-	@OneToMany(mappedBy = "route",cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE)
 	private List<Booking> bookings;
+
+	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE)
+	private List<Stop> stops;
 
 	public int getId() {
 		return id;
@@ -117,14 +117,6 @@ public class Route {
 		this.seatAvailable = seatAvailable;
 	}
 
-	public List<Stop> getStops() {
-		return stops;
-	}
-
-	public void setStops(List<Stop> stops) {
-		this.stops = stops;
-	}
-
 	public List<Bus> getBuses() {
 		return buses;
 	}
@@ -139,6 +131,14 @@ public class Route {
 
 	public void setBookings(List<Booking> bookings) {
 		this.bookings = bookings;
+	}
+
+	public List<Stop> getStops() {
+		return stops;
+	}
+
+	public void setStops(List<Stop> stops) {
+		this.stops = stops;
 	}
 
 }
