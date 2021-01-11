@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.BusSearch;
+import com.lti.dto.RouteDetails;
 import com.lti.service.BusService;
 
 @RestController
@@ -20,8 +21,8 @@ public class BusController {
 	private BusService busService;
 	
 	@PostMapping("/search")
-	public @ResponseBody List<Object[]> searchBusesForRoute(@RequestBody BusSearch bus ) {
-		List<Object[]> buses = busService.searchBus(bus.getSource(), bus.getDestination(), bus.getDate());
+	public @ResponseBody List<RouteDetails> searchBusesForRoute(@RequestBody BusSearch bus ) {
+		List<RouteDetails> buses = busService.searchBus(bus.getSource(), bus.getDestination(), bus.getDate());
 		return buses;
 	}
 
