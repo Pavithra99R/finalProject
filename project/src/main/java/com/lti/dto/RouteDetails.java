@@ -8,6 +8,7 @@ public class RouteDetails {
 	private int fare;
 	private String depature;
 	private String arrival;
+	private String duration;
 	private String busName;
 	private String busType;
 	private int busId;
@@ -48,6 +49,12 @@ public class RouteDetails {
 	public void setArrival(String arrival) {
 		this.arrival = arrival;
 	}
+	public String getDuration() {
+		return duration;
+	}
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 	public String getBusName() {
 		return busName;
 	}
@@ -72,6 +79,8 @@ public class RouteDetails {
 	public void setSeatAvailable(int seatAvailable) {
 		this.seatAvailable = seatAvailable;
 	}
+	
+	
 	
 	
 

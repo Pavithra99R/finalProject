@@ -3,10 +3,13 @@ package com.lti.service;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.lti.dto.RouteDetails;
+import com.lti.entity.Route;
 
 public interface BusService {
 	
-	public List<RouteDetails> searchBus(String source,String destination,LocalDate date);
+	public List<Route> searchBus(String source,String destination,LocalDate date);
+	
+	
+
 
 }

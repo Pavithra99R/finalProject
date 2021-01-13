@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_stops")
 public class Stop {
@@ -28,9 +31,11 @@ public class Stop {
 	@Column(name = "stop")
 	private String stop;
 
+	@JsonFormat(pattern = "HH:mm")
 	@Column(name = "time")
 	private LocalDateTime time;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "route_id")
 	private Route route;

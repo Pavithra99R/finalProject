@@ -10,20 +10,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.BusSearch;
-import com.lti.dto.RouteDetails;
+import com.lti.entity.Route;
 import com.lti.service.BusService;
 
 @RestController
 @CrossOrigin
 public class BusController {
-	
+
 	@Autowired
 	private BusService busService;
-	
+
 	@PostMapping("/search")
-	public @ResponseBody List<RouteDetails> searchBusesForRoute(@RequestBody BusSearch bus ) {
-		List<RouteDetails> buses = busService.searchBus(bus.getSource(), bus.getDestination(), bus.getDate());
+	public @ResponseBody List<Route> searchBusesForRoute(@RequestBody BusSearch bus) {
+		List<Route> buses = busService.searchBus(bus.getSource(), bus.getDestination(), bus.getDate());
 		return buses;
+
 	}
 
 }

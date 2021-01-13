@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_bus")
 public class Bus {
@@ -33,10 +35,12 @@ public class Bus {
 	@Column(name = "NO_OF_Seats")
 	private int noOfseats;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "ROUTE_ID")
 	private Route route;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "bus", cascade = CascadeType.MERGE)
 	private List<Review> reviews;
 
