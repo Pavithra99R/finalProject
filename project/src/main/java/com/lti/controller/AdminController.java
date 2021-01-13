@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.LoginStatus;
+import com.lti.dto.Status.StatusType;
 import com.lti.dto.UpdateBus;
 import com.lti.entity.Bus;
 import com.lti.exception.BusServiceException;
@@ -37,6 +39,25 @@ public class AdminController {
 			return "update success";
 		} catch (BusServiceException e) {
 			return e.getMessage();
+		}
+	}
+	
+	@PostMapping("/login")
+	public LoginStatus login(@RequestBody Login login) {
+		try {
+			Customer customer = customerService.login(login.getEmail(), login.getPassword());
+			LoginStatus status = new LoginStatus();
+			status.setStatus(StatusType.SUCCESS);
+			status.setMessage("Login Successful!");
+			status.setCustomerId(customer.getId());
+			status.setCustomerName(customer.getName());
+			return status;
+		}
+		catch(CustomerServiceException e) {
+			LoginStatus status = new LoginStatus();
+			status.setStatus(StatusType.FAILED);
+			status.setMessage(e.getMessage());
+			return status;			
 		}
 	}
 

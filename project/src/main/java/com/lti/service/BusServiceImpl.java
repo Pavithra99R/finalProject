@@ -58,5 +58,19 @@ public class BusServiceImpl implements BusService {
 			throw new BusServiceException("Invalid entry, Bus Status cannot be deleted ");
 		}
 	}
+	
+	public Customer login(String email, String password) {
+		try {
+			if(!customerRepository.isCustomerPresent(email))
+				throw new CustomerServiceException("Customer not registered!");
+			int id = customerRepository.findByEmailAndPassword(email, password);
+			Customer customer = customerRepository.fetch(Customer.class, id);
+			return customer;
+		}
+		//catch(EmptyResultDataAccessException e) {
+		catch(NoResultException e) {
+			throw new CustomerServiceException("Incorrect email/password");
+		}
+	}
 
 }
