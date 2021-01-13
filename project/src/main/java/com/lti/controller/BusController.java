@@ -16,12 +16,12 @@ import com.lti.service.BusService;
 @RestController
 @CrossOrigin
 public class BusController {
-	
+
 	@Autowired
 	private BusService busService;
-	
+
 	@PostMapping("/search")
-	public @ResponseBody List<RouteDetails> searchBusesForRoute(@RequestBody BusSearch bus ) {
+	public @ResponseBody List<RouteDetails> searchBusesForRoute(@RequestBody BusSearch bus) {
 		List<RouteDetails> buses = busService.searchBus(bus.getSource(), bus.getDestination(), bus.getDate());
 		return buses;
 	}

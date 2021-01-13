@@ -17,7 +17,7 @@ public class Passenger {
 
 	private String name;
 	private int age;
-	private String Gender;
+	private String gender;
 	private int seatNo;
 
 	@ManyToOne
@@ -49,11 +49,11 @@ public class Passenger {
 	}
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 
 	public int getSeatNo() {
