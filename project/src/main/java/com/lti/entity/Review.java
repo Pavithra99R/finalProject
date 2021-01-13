@@ -22,7 +22,7 @@ public class Review {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private Users user;
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "bus_id")
@@ -44,11 +44,11 @@ public class Review {
 		this.rating = rating;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

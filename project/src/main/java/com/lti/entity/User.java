@@ -13,11 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
 @Table(name = "tbl_users")
-public class Users {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_user_seq")
@@ -42,8 +40,7 @@ public class Users {
 
 	@Column(name = "GENDER")
 	private String gender;
-	
-	@JsonFormat(pattern="yyyy-MM-dd")
+
 	@Column(name = "DOB")
 	private LocalDate dob;
 
@@ -156,4 +153,3 @@ public class Users {
 	}
 
 }
-//hi

@@ -41,7 +41,7 @@ public class Payment {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private Users user;
+	private User user;
 
 	public int getTransactionId() {
 		return transactionId;
@@ -91,11 +91,11 @@ public class Payment {
 		this.booking = booking;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
