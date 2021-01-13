@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "tbl_users")
 public class Users {
@@ -21,7 +23,7 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_user_seq")
 	@SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "my_user_seq")
 	@Column(name = "USER_ID")
-	private int UserId;
+	private int userId;
 
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -40,7 +42,8 @@ public class Users {
 
 	@Column(name = "GENDER")
 	private String gender;
-
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "DOB")
 	private LocalDate dob;
 
@@ -57,11 +60,11 @@ public class Users {
 	private List<Review> reviews;
 
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public String getFirstName() {
