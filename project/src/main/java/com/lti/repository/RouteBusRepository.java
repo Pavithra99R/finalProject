@@ -28,7 +28,7 @@ public class RouteBusRepository extends GenericRepository{
 	public List<Route> fetchRouteDetails(String source,String destination,LocalDateTime date){
 		Query q = entityManager.createQuery("select distinct r "
 				+ " from Route r join fetch r.buses b where r.source=:source and r.destination=:destination "
-				+ "and r.dateOfDepature >= :date");
+				+ "and to_char(r.dateOfDepature,'dd/MM') = to_char(:date,'dd/MM')");
 		q.setParameter("source", source);
 		q.setParameter("destination", destination);
 		q.setParameter("date", date);
