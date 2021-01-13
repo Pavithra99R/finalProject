@@ -2,11 +2,15 @@ package com.lti.dto;
 
 public class Status {
 
-	private StatusType status;
 	private String message;
+	private StatusType status;
 
-	public static enum StatusType {
-		SUCCESS, FAILED;
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public StatusType getStatus() {
@@ -17,12 +21,7 @@ public class Status {
 		this.status = status;
 	}
 
-	public String getMessage() {
-		return message;
+	public static enum StatusType {
+		SUCCESS, FAILED;
 	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 }

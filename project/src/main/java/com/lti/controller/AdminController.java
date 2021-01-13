@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.dto.LoginStatus;
+import com.lti.dto.AdminLogin;
+import com.lti.dto.AdminLoginStatus;
 import com.lti.dto.Status.StatusType;
 import com.lti.dto.UpdateBus;
+import com.lti.entity.Admin;
 import com.lti.entity.Bus;
 import com.lti.exception.BusServiceException;
 import com.lti.service.BusService;
@@ -42,19 +44,19 @@ public class AdminController {
 		}
 	}
 	
-	@PostMapping("/login")
-	public LoginStatus login(@RequestBody Login login) {
+	@PostMapping("/admin")
+	public AdminLoginStatus login(@RequestBody AdminLogin login) {
 		try {
-			Customer customer = customerService.login(login.getEmail(), login.getPassword());
-			LoginStatus status = new LoginStatus();
+			Admin admin = service.login(login.getEmail(),login.getPassword());
+			AdminLoginStatus status = new AdminLoginStatus();
 			status.setStatus(StatusType.SUCCESS);
 			status.setMessage("Login Successful!");
-			status.setCustomerId(customer.getId());
-			status.setCustomerName(customer.getName());
+			status.setId(admin.getId());
+			status.setName(admin.getName());
 			return status;
 		}
-		catch(CustomerServiceException e) {
-			LoginStatus status = new LoginStatus();
+		catch(BusServiceException e) {
+			AdminLoginStatus status = new AdminLoginStatus();
 			status.setStatus(StatusType.FAILED);
 			status.setMessage(e.getMessage());
 			return status;			

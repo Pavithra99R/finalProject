@@ -1,16 +1,16 @@
 package com.lti.dto;
 
-public class LoginStatus extends Status {
+public class AdminLogin {
 
-	private int UserId;
+	private String email;
 	private String password;
 
-	public int getUserId() {
-		return UserId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserId(int userId) {
-		UserId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {

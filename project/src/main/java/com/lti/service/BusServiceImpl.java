@@ -5,13 +5,17 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dto.RouteDetails;
+import com.lti.dto.AdminLogin;
 import com.lti.dto.UpdateBus;
+import com.lti.entity.Admin;
 import com.lti.entity.Bus;
+import com.lti.entity.Route;
 import com.lti.exception.BusServiceException;
 import com.lti.repository.RouteBusRepository;
 
@@ -22,13 +26,13 @@ public class BusServiceImpl implements BusService {
 	@Autowired
 	private RouteBusRepository routeBusRepository;
 
-	public List<RouteDetails> searchBus(String source, String destination, LocalDate date) {
+	public List<Route> searchBus(String source, String destination, LocalDate date) {
 		String[] s = source.split(",");
 		String[] d = destination.split(",");
 		LocalTime time = LocalTime.of(0, 0);
-		List<RouteDetails> buses = routeBusRepository.fetchRouteDetails(s[1], d[1], LocalDateTime.of(date, time));
+		List<Route> buses = routeBusRepository.fetchRouteDetails(s[1], d[1], LocalDateTime.of(date, time));
 		return buses;
-
+	
 	}
 
 	public void addBus(Bus newBus) {
@@ -59,18 +63,20 @@ public class BusServiceImpl implements BusService {
 		}
 	}
 	
-	public Customer login(String email, String password) {
+	public Admin login(String email, String password) {
 		try {
-			if(!customerRepository.isCustomerPresent(email))
-				throw new CustomerServiceException("Customer not registered!");
-			int id = customerRepository.findByEmailAndPassword(email, password);
-			Customer customer = customerRepository.fetch(Customer.class, id);
-			return customer;
+			if(!routeBusRepository.isAdminAuthorized(email))
+				throw new BusServiceException("Restricted Login");
+			int id = routeBusRepository.findByEmailAndPassword(email, password);
+			Admin admin = routeBusRepository.fetch(Admin.class, id);
+			return admin;
 		}
-		//catch(EmptyResultDataAccessException e) {
 		catch(NoResultException e) {
-			throw new CustomerServiceException("Incorrect email/password");
+			throw new BusServiceException("Incorrect email/password");
 		}
+	
+	
 	}
+
 
 }
