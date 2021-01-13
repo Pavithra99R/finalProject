@@ -65,8 +65,9 @@ public class BusServiceImpl implements BusService {
 	
 	public Admin login(String email, String password) {
 		try {
-			if(!routeBusRepository.isAdminAuthorized(email))
+			if(!routeBusRepository.isAdminAuthorized(email)) {
 				throw new BusServiceException("Restricted Login");
+			}
 			int id = routeBusRepository.findByEmailAndPassword(email, password);
 			Admin admin = routeBusRepository.fetch(Admin.class, id);
 			return admin;
@@ -77,6 +78,5 @@ public class BusServiceImpl implements BusService {
 	
 	
 	}
-
 
 }
