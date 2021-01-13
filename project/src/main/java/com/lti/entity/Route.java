@@ -1,17 +1,22 @@
 package com.lti.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tbl_route")
@@ -35,9 +40,11 @@ public class Route {
 	@Column(name = "duration")
 	private String duration;
 
+	@JsonFormat(pattern="HH:mm")
 	@Column(name = "date_of_depature")
 	private LocalDateTime dateOfDepature;
 
+	@JsonFormat(pattern="HH:mm")
 	@Column(name = "date_of_arrival")
 	private LocalDateTime dateOfArrival;
 
@@ -47,11 +54,13 @@ public class Route {
 	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE)
 	private List<Bus> buses;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE)
-	private List<Booking> bookings;
+	private List<Booking> bookings = new ArrayList<Booking>();
 
-	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE)
-	private List<Stop> stops;
+	@JsonIgnore
+	@OneToMany(mappedBy = "route", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+	private List<Stop> stops = new ArrayList<Stop>();
 
 	public int getId() {
 		return id;

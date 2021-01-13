@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.dto.RouteDetails;
+import com.lti.entity.Route;
 import com.lti.repository.RouteBusRepository;
 
 @Service
@@ -19,13 +19,16 @@ public class BusServiceImpl implements BusService {
 	@Autowired
 	private RouteBusRepository routeBusRepository;
 
-	public List<RouteDetails> searchBus(String source, String destination, LocalDate date) {
+	public List<Route> searchBus(String source, String destination, LocalDate date) {
 			String[] s = source.split(",");
 			String[] d = destination.split(",");
 			LocalTime time = LocalTime.of(0, 0);
-			List<RouteDetails> buses = routeBusRepository.fetchRouteDetails(s[1], d[1], LocalDateTime.of(date, time));
+			List<Route> buses = routeBusRepository.fetchRouteDetails(s[1], d[1], LocalDateTime.of(date, time));
 			return buses;
 		
 	}
+	
+	
+
 
 }
