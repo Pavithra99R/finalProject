@@ -8,3 +8,5 @@ public interface ViewService {
 	public void viewProfile(Users user,int userId);
 
 }
+
+
