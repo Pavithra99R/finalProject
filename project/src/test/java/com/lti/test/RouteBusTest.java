@@ -2,7 +2,7 @@ package com.lti.test;
 
 import java.util.List;
 
-import org.junit.Test;
+//import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,7 +10,7 @@ import com.lti.dao.RouteBus;
 
 public class RouteBusTest {
 	
-	@Test
+	//@Test
 	public void getBusForRoute() {
 		
 		RouteBus dao = new RouteBus();

@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tbl_users")
@@ -53,9 +54,11 @@ public class Users {
 	@Column(name = "WALLET")
 	private float wallet;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
 	private List<Booking> bookings;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
 	private List<Review> reviews;
 
