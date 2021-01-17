@@ -1,7 +1,10 @@
 package com.lti.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +23,12 @@ public class GenericRepository {
 		E e = entityManager.find(clazz, pk);
 		return e;
 	}
+	
+	public List<?> fetchAll(Class clazz) {
+		
+		String jpql = "select obj from " + clazz.getName() + " as obj";
+		Query q = entityManager.createQuery(jpql);
+		 List<?> list = q.getResultList();
+		 return list;
+		 }
 }

@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.AddStop;
 import com.lti.dto.AdminLogin;
 import com.lti.dto.AdminLoginStatus;
 import com.lti.dto.Status.StatusType;
 import com.lti.dto.UpdateBus;
 import com.lti.entity.Admin;
 import com.lti.entity.Bus;
+import com.lti.entity.Route;
 import com.lti.exception.BusServiceException;
 import com.lti.service.BusService;
 
@@ -63,4 +65,24 @@ public class AdminController {
 		}
 	}
 
+	@PostMapping("/addroute")
+	public String addRoute(@RequestBody Route newRoute) {
+		try {
+			service.addRoute(newRoute);
+			return "Route added successfully";
+		} catch (BusServiceException e) {
+			return e.getMessage();
+		}
+	}
+	
+	@PostMapping("/addstop")
+	public String addStop(@RequestBody AddStop newStop) {
+		try {
+			service.addStop(newStop);
+			return "Stop added successfully";
+		}catch (BusServiceException e) {
+			return e.getMessage();
+		}
+		
+	}
 }

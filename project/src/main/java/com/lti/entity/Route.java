@@ -40,11 +40,11 @@ public class Route {
 	@Column(name = "duration")
 	private String duration;
 
-	@JsonFormat(pattern="HH:mm")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm")
 	@Column(name = "date_of_depature")
 	private LocalDateTime dateOfDepature;
 
-	@JsonFormat(pattern="HH:mm")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm")
 	@Column(name = "date_of_arrival")
 	private LocalDateTime dateOfArrival;
 

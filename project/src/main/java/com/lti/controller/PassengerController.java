@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.BookingDetails;
+import com.lti.dto.BookingStatus;
+import com.lti.dto.Status.StatusType;
 import com.lti.exception.BusServiceException;
 import com.lti.service.BookingService;
 
@@ -19,14 +21,16 @@ public class PassengerController {
 	private BookingService bookingService;
 	
 	@PostMapping("/passenger")
-	public @ResponseBody String bookForPassengers(@RequestBody BookingDetails bookingDetails) {
+	public @ResponseBody BookingStatus bookForPassengers(@RequestBody BookingDetails bookingDetails) {
 	
+		BookingStatus status = new BookingStatus();
 		try {
-			bookingService.booking(bookingDetails);
-			return "Ticket Booked Successfully";
+			int ticketId = bookingService.booking(bookingDetails);
+			status.setTicketId(ticketId);
+			return status;
 		}
 		catch (BusServiceException e) {
-			return e.getMessage();
+		    return status;
 		}
 	}
 

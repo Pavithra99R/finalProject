@@ -2,7 +2,8 @@ package com.lti.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import com.lti.dto.RouteDetails;
+
+import com.lti.dto.AddStop;
 import com.lti.dto.UpdateBus;
 import com.lti.entity.Admin;
 import com.lti.entity.Bus;
@@ -21,4 +22,7 @@ public interface BusService {
 	
 	public Admin login(String email, String password);
 
+	public void addRoute(Route newRoute);
+
+	public void addStop(AddStop newStop);
 }
