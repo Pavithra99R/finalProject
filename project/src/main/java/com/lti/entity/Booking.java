@@ -17,6 +17,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_booking")
 public class Booking {
@@ -31,17 +34,21 @@ public class Booking {
 	private String droping;
 	private double amount;
 
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "paid_date")
 	private LocalDateTime paidDate;
 	private String status;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "booking", cascade=CascadeType.MERGE)
 	private List<Passenger> passengers;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="route_id")
 	private Route route;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
