@@ -4,5 +4,6 @@ import com.lti.entity.Users;
 
 public interface UserInterface {
 	public int register(Users users);
+	public void resetPassword(String email);
 
 }
