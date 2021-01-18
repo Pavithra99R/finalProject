@@ -2,6 +2,6 @@ package com.lti.service;
 
 public interface TicketPdfService {
 	
-	public void ticketPdf(int ticketId);
+	public void ticketPdf(int ticketId,String email);
 
 }

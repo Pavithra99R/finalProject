@@ -24,12 +24,15 @@ public class TicketServiceImpl implements TicketPdfService{
 	
 	@Autowired
 	private TicketRepository ticketRepository;
+	
+	@Autowired
+	private MailSendService mailSender;
 
-	public void ticketPdf(int ticketId) {
+	public void ticketPdf(int ticketId,String email) {
 		Document document = new Document();
 		try {
-			String fileName = "Ticket"+ Integer.toString(ticketId);
-			FileOutputStream out = new FileOutputStream("d:/Ticket/"+fileName+".pdf");
+			String fileName = "d:/Ticket/Ticket"+ Integer.toString(ticketId)+".pdf";
+			FileOutputStream out = new FileOutputStream(fileName);
 			PdfWriter writer = PdfWriter.getInstance(document, out);
 			document.open();
 			document.add(new Paragraph("Ticket For your Journey"));
@@ -103,6 +106,7 @@ public class TicketServiceImpl implements TicketPdfService{
 			document.close();
 			writer.close();
 			System.out.println("Pdf created");
+			mailSender.sendMail(fileName,email);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
