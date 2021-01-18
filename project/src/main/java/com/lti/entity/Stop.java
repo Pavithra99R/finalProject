@@ -31,7 +31,7 @@ public class Stop {
 	@Column(name = "stop")
 	private String stop;
 
-	@JsonFormat(pattern = "HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Column(name = "time")
 	private LocalDateTime time;
 

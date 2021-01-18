@@ -19,7 +19,7 @@ public class BookingService {
 	@Autowired
 	private RouteBusRepository routeBusRepository;
 
-	public void booking(BookingDetails bookingDetails) {
+	public int booking(BookingDetails bookingDetails) {
 
 		try {
 			Route route = routeBusRepository.fetch(Route.class, bookingDetails.getRouteId());
@@ -28,6 +28,7 @@ public class BookingService {
 			booking.setBoarding(bookingDetails.getBoarding());
 			booking.setDroping(bookingDetails.getDroping());
 			booking.setAmount(bookingDetails.getFare());
+			booking.setStatus("Payment Pending");
 			
 			User user = routeBusRepository.fetch(User.class, bookingDetails.getUserId());
 			booking.setUser(user);
@@ -38,9 +39,12 @@ public class BookingService {
 				passenger.setBooking(booking);
 			}
 			
-			routeBusRepository.save(booking);
+			Booking updatedBooking= (Booking) routeBusRepository.save(booking);
+			return updatedBooking.getTicketId();
+			
 		} catch (Exception e) {
-			throw new BusServiceException("Invalid entry,Bus cannot be added!!");
+			throw new BusServiceException("Invalid entry,Can't proceed!!");
 		}
+		
 	}
 }
