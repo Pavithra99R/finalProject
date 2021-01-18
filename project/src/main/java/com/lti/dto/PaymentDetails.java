@@ -11,7 +11,7 @@ public class PaymentDetails {
 	private float amount;
 	private int cardNumber;
 	private int cvv;
-	private LocalDate expiryDate;
+	private String expiryDate;
 	private String nameOnCard;
 	private String status;
 	private String paymentType;
@@ -72,11 +72,11 @@ public class PaymentDetails {
 		this.cvv = cvv;
 	}
 
-	public LocalDate getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(LocalDate expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 

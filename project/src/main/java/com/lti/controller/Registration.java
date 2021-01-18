@@ -41,7 +41,8 @@ public class Registration {
 	return status;
 	}
 	}
-	@GetMapping("changepassword")
+	
+	@GetMapping("/forgotpassword")
 	public @ResponseBody void changePassword(@RequestParam("email") String email){
 		
 		ui.resetPassword(email);
