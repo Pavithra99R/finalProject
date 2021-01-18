@@ -21,12 +21,30 @@
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		init-method="createDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1522:orcl" />
-		<property name="username" value="system" />
-		<property name="password" value="manager" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:OSE" />
+		<property name="username" value="hr" />
+		<property name="password" value="hr" />
 		<property name="initialSize" value="2" />
 		<property name="maxTotal" value="5" />
 	</bean>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.office365.com"/>
+        <property name="port" value="587" />
+        <property name="username" value="busReservation-bluebus@outlook.com"/>
+        <property name="password" value="password12345"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.connecttimeout">50000</prop>
+                <prop key="mail.smtp.timeout">30000</prop>
+                <prop key="mail.smtp.writetimeout">50000</prop>
+            </props>
+        </property>
+    </bean>
 
 	<bean id="myEmf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
