@@ -25,4 +25,8 @@ public interface BusService {
 	public void addRoute(Route newRoute);
 
 	public void addStop(AddStop newStop);
+	
+	public List<Bus> viewBus();
+	
+	public List<Object[]> viewRoute();
 }

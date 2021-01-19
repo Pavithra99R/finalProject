@@ -9,7 +9,7 @@ public class PaymentDetails {
 	private int userId;
 	private LocalDate paidDate;
 	private float amount;
-	private int cardNumber;
+	private long cardNumber;
 	private int cvv;
 	private String expiryDate;
 	private String nameOnCard;
@@ -56,11 +56,11 @@ public class PaymentDetails {
 		this.amount = amount;
 	}
 
-	public int getCardNumber() {
+	public long getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 

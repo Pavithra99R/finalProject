@@ -1,10 +1,14 @@
 package com.lti.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.AddStop;
@@ -21,11 +25,11 @@ import com.lti.service.BusService;
 @RestController
 @CrossOrigin
 public class AdminController {
-	
+
 	@Autowired
 	private BusService service;
-	
-	@PostMapping(path="/addbus")
+
+	@PostMapping(path = "/addbus")
 	public String addBusType(@RequestBody Bus newBus) {
 		try {
 			service.addBus(newBus);
@@ -34,8 +38,8 @@ public class AdminController {
 			return e.getMessage();
 		}
 	}
-	
-	@PutMapping(path="/updateBusRoute")
+
+	@PutMapping(path = "/updateBusRoute")
 	public String updateBusStatus(@RequestBody UpdateBus updateBus) {
 
 		try {
@@ -45,23 +49,22 @@ public class AdminController {
 			return e.getMessage();
 		}
 	}
-	
+
 	@PostMapping("/admin")
 	public AdminLoginStatus login(@RequestBody AdminLogin login) {
 		try {
-			Admin admin = service.login(login.getEmail(),login.getPassword());
+			Admin admin = service.login(login.getEmail(), login.getPassword());
 			AdminLoginStatus status = new AdminLoginStatus();
 			status.setStatus(StatusType.SUCCESS);
 			status.setMessage("Login Successful!");
 			status.setId(admin.getId());
 			status.setName(admin.getName());
 			return status;
-		}
-		catch(BusServiceException e) {
+		} catch (BusServiceException e) {
 			AdminLoginStatus status = new AdminLoginStatus();
 			status.setStatus(StatusType.FAILED);
 			status.setMessage(e.getMessage());
-			return status;			
+			return status;
 		}
 	}
 
@@ -74,15 +77,29 @@ public class AdminController {
 			return e.getMessage();
 		}
 	}
-	
+
 	@PostMapping("/addstop")
 	public String addStop(@RequestBody AddStop newStop) {
 		try {
 			service.addStop(newStop);
 			return "Stop added successfully";
-		}catch (BusServiceException e) {
+		} catch (BusServiceException e) {
 			return e.getMessage();
 		}
+
+	}
+
+	@GetMapping("/buses")
+	public @ResponseBody List<Bus> viewBuses() {
+			List<Bus> buses = service.viewBus();
+			return buses;
 		
 	}
+
+	@GetMapping("/routes")
+	public List<Object[]> viewRoutes() {
+			List<Object[]> routes = service.viewRoute();
+			return routes;
+	}
+	
 }
