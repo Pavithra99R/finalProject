@@ -41,11 +41,13 @@ public class Registration {
 	return status;
 	}
 	}
+
 	
-	@GetMapping("/forgotpassword")
-	public @ResponseBody void changePassword(@RequestParam("email") String email){
-		
-		ui.resetPassword(email);
-			
-		}
+//	@GetMapping("/forgotpassword")
+//
+//	public @ResponseBody void changePassword(@RequestParam("email") String email){
+//		
+//		ui.resetPassword(email);
+//			
+//		}
 }

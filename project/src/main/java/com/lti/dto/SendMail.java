@@ -23,8 +23,8 @@ public class SendMail {
 	
 	public void sendNotificationEmail(Users user) {
 		final String recepient = user.getEmail();
-		 final String sender = "busreservationsystem@outlook.com";  // like yourname@outlook.com
-		    final String password = "busreservation123";   // password here
+		 final String sender = "busReservation-bluebus@outlook.com";  // like yourname@outlook.com
+		    final String password = "password12345";   // password here
 
 		    Properties props = new Properties();
 		    props.put("mail.smtp.auth", "true");
