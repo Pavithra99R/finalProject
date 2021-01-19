@@ -35,6 +35,7 @@ public class PaymentService {
 			
 			payment.setAmountPaid(paymentDetails.getAmount());
 			booking.setAmount(paymentDetails.getAmount());
+
 			payment.setPaymentdate(LocalDate.now());
 			payment.setStatus("paid");
 			payment.setPaymenttype(paymentDetails.getPaymentType());

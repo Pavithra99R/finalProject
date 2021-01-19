@@ -25,6 +25,7 @@ public class PaymentController {
 		try {
 			int transactionId=paymentService.makePayment(payment);
 			status.setTrasactionId(transactionId);
+			status.setStatus("Payment Success");
 			return status;
 		}
 		catch (BusServiceException e) {

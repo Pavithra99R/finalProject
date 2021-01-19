@@ -26,7 +26,6 @@ public class RegistrationService implements UserInterface{
 		}
 		
 	}
-	@Transactional
 	public void resetPassword(String email) {
 		
 			SendMail reset= new SendMail();

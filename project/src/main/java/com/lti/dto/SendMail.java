@@ -57,7 +57,7 @@ public class SendMail {
 	         message.setSubject("Registration Successful in Bus Reservation System!!!");
 
 	         // Now set the actual message
-	         message.setText("Your registered email is "+ user.getEmail()+"  Password is "+ user.getPassword());
+	         message.setText("Your registered email is "+ user.getEmail()+"  User Id is "+ user.getUserId());
 
 	         // Send message
 	         Transport.send(message);
