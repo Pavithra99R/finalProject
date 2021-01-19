@@ -59,19 +59,27 @@ public class RouteBusRepository extends GenericRepository {
 	}
 
 	public boolean isAdminAuthorized(String email) {
-		return (Long)
-				entityManager
-				.createQuery("select count(a.id) from Admin a where a.email = :email")
-				.setParameter("email", email)
-				.getSingleResult() == 1 ? true : false;
+		return (Long) entityManager.createQuery("select count(a.id) from Admin a where a.email = :email")
+				.setParameter("email", email).getSingleResult() == 1 ? true : false;
 	}
 
 	public int findByEmailAndPassword(String email, String password) {
-		return (Integer)
-				entityManager
+		return (Integer) entityManager
 				.createQuery("select a.id from Admin a where a.email = :email and a.password = :password")
-				.setParameter("email", email)
-				.setParameter("password", password)
-				.getSingleResult();
+				.setParameter("email", email).setParameter("password", password).getSingleResult();
+	}
+
+	public List<Bus> fetchBusList() {
+
+		Query q = entityManager.createQuery("select b from Bus as b");
+		List<Bus> buses = q.getResultList();
+		return buses;
+	}
+
+	public List<Object[]> fetchRoutes() {
+		Query q = entityManager.createQuery("select r.id,r.source,r.destination,to_char(r.dateOfDepature,'hh24:mi:ss'),"
+				+ "to_char(r.dateOfArrival,'hh24:mi:ss') from Route as r");
+		List<Object[]> routes = q.getResultList();
+		return routes;
 	}
 }

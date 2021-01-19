@@ -15,7 +15,6 @@ import com.lti.dto.AddStop;
 import com.lti.dto.UpdateBus;
 import com.lti.entity.Admin;
 import com.lti.entity.Bus;
-import com.lti.entity.Passenger;
 import com.lti.entity.Route;
 import com.lti.entity.Stop;
 import com.lti.exception.BusServiceException;
@@ -79,15 +78,6 @@ public class BusServiceImpl implements BusService {
 
 	}
 
-	// public List<Bus> viewBus(){
-	// try {
-	// List<?> buses = routeBusRepository.fetchAll(Bus.class);
-	// }catch(NoResultException e) {
-	// throw new BusServiceException("Incorrect email/password");
-	// }
-	// return buses;
-	// }
-
 	public void addRoute(Route newRoute) {
 		try {
 			routeBusRepository.save(newRoute);
@@ -98,10 +88,10 @@ public class BusServiceImpl implements BusService {
 
 	public void addStop(AddStop newStop) {
 		try {
-			
+
 			Route route = routeBusRepository.fetch(Route.class, newStop.getRouteId());
 			route.setStops(newStop.getStops());
-			
+
 			for (Stop stop : newStop.getStops()) {
 				stop.setRoute(route);
 			}
@@ -109,6 +99,17 @@ public class BusServiceImpl implements BusService {
 		} catch (Exception e) {
 			throw new BusServiceException("Invalid entry, Stop cannot be added ");
 		}
+	}
+
+	public List<Bus> viewBus() {
+		List<Bus> buses = routeBusRepository.fetchBusList();
+
+		return buses;
+	}
+
+	public List<Object[]> viewRoute() {
+		List<Object[]> routes = routeBusRepository.fetchRoutes();
+		return routes;
 	}
 
 }

@@ -9,9 +9,9 @@ public class PaymentDetails {
 	private int userId;
 	private LocalDate paidDate;
 	private float amount;
-	private int cardNumber;
+	private long cardNumber;
 	private int cvv;
-	private LocalDate expiryDate;
+	private String expiryDate;
 	private String nameOnCard;
 	private String status;
 	private String paymentType;
@@ -56,11 +56,11 @@ public class PaymentDetails {
 		this.amount = amount;
 	}
 
-	public int getCardNumber() {
+	public long getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
@@ -72,11 +72,11 @@ public class PaymentDetails {
 		this.cvv = cvv;
 	}
 
-	public LocalDate getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(LocalDate expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 
